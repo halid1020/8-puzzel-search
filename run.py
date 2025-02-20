@@ -1,5 +1,15 @@
 from search_algo.breadth_first_search import breadth_first_search
+from search_algo.depth_first_search_iterative import dfs_iterative
+from search_algo.depth_first_search_recursive import dfs_recursive
+
+import argparse
 from eight_puzzle import EightPuzzle
+
+str2algo = {
+    'bfs': breadth_first_search,
+    'dfs_it': dfs_iterative,
+    'dfs_rec': dfs_recursive
+}
 
 def visualise_state(state):
     ## Visualise the state of the 8-puzzle
@@ -13,9 +23,11 @@ def visualise_state(state):
 def visualise_solution(problem, solution):
     
     state = problem.initial_state
+    print('\n##############################################')
     print('Initial state:')
     visualise_state(state)
     print('Solution:', solution)
+    print('\n----------------------------------------------')
 
     for i, action in enumerate(solution):
         state = problem.transition_fn(state, action)
@@ -24,8 +36,17 @@ def visualise_solution(problem, solution):
 
 
 def main():
+    arg_parser = argparse.ArgumentParser(description='Solve the 8-puzzle using breadth-first search.')
+    arg_parser.add_argument('--initial_state', type=int, nargs=9, default=[1, 2, 3, 4, 0, 5, 6, 7, 8],
+                            help='The initial state of the 8-puzzle.')
+    arg_parser.add_argument('--algo', type=str, default='bfs', help='The search algorithm to use.')
+    args = arg_parser.parse_args()
+
+    algo = str2algo[args.algo]
+
     problem = EightPuzzle((1, 2, 3, 4, 0, 5, 6, 7, 8))
-    solution = breadth_first_search(problem)
+
+    solution = algo(problem)
     visualise_solution(problem, solution)
 
 
