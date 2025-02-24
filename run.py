@@ -1,6 +1,8 @@
 from search_algo.breadth_first_search import breadth_first_search
 from search_algo.depth_first_search_iterative import dfs_iterative
 from search_algo.depth_first_search_recursive import dfs_recursive
+from search_algo.A_star import A_star_search
+from search_algo.simplified_memory_bounded_A_star import SMA_star_search
 
 import argparse
 from eight_puzzle import EightPuzzle
@@ -8,7 +10,9 @@ from eight_puzzle import EightPuzzle
 str2algo = {
     'bfs': breadth_first_search,
     'dfs_it': dfs_iterative,
-    'dfs_rec': dfs_recursive
+    'dfs_rec': dfs_recursive,
+    'a_star': A_star_search,
+    'smba_star': SMA_star_search,
 }
 
 def visualise_state(state):
