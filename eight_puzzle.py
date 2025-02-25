@@ -25,7 +25,7 @@ class EightPuzzle(SearchProblem):
         state_list[blank_index], state_list[new_index] = state_list[new_index], state_list[blank_index]
         return tuple(state_list)
 
-    def goal_checker(self, state) -> bool:
+    def goal_checker(self, state):
         """ Checks if a given state satisfies the goal condition."""
         return state == (0, 1, 2, 3, 4, 5, 6, 7, 8)
 
@@ -44,11 +44,15 @@ class EightPuzzle(SearchProblem):
             allowed_actions.append('right')
         return allowed_actions
 
-    def cost_fn(self, state, action) -> float:
+    def cost_fn(self, state, action):
         """ Computes the cost of applying an action to a given state."""
         return 1.0
 
-    def heuristic_fn(self, state) -> float:
+
+
+    ###################################################################
+    ###################################################################
+    def heuristic_fn(self, state):
         """ Computes the heuristic value (Manhattan distance) of a given state."""
         goal_positions = {
             0: (0, 0), 1: (0, 1), 2: (0, 2),
