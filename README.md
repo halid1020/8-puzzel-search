@@ -6,7 +6,7 @@ This repository provides Python implementation of search algorithms for Module C
 
 ### I. Installation
 
-You do not need special package installation for this repository, but you do need to have `Python` installed in your machine.
+You do not a need special package installation, but you do need to have `Python` installed in your machine.
 
 ### II. Running
 
