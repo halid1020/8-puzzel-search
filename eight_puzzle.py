@@ -52,7 +52,11 @@ class EightPuzzle(SearchProblem):
 
     ###################################################################
     ###################################################################
+
     def heuristic_fn(self, state):
+        return self.heuristic_fn_1(state)
+    
+    def heuristic_fn_2(self, state):
         """ Computes the heuristic value (Manhattan distance) of a given state."""
         goal_positions = {
             0: (0, 0), 1: (0, 1), 2: (0, 2),
@@ -70,3 +74,12 @@ class EightPuzzle(SearchProblem):
             distance = abs(current_row - goal_row) + abs(current_col - goal_col)
             total_distance += distance
         return total_distance
+    
+    def heuristic_fn_1(self, state):
+        """ Computes the heuristic value (number of misplaced tiles) of a given state."""
+        total_misplaced = 0
+        for index in range(9):
+            value = state[index]
+            if value != 0 and value != index:
+                total_misplaced += 1
+        return total_misplaced
